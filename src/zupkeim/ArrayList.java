@@ -54,14 +54,37 @@ public class ArrayList<E> implements List<E>, RandomAccess {
      * @param target element whose presence in the list is to be tested
      * @return true if the list contains the specified element
      */
-    @Override
+//    @Override
+//    public boolean contains(Object target) {
+//        boolean found = false;
+//        for(int i=0; !found && i<size(); ++i) {
+//            found = target==null ? data[i]==null : target.equals(data[i]);
+//        }
+//        return found;
+//    }
+
+
     public boolean contains(Object target) {
-        boolean found = false;
-        for(int i=0; !found && i<size(); ++i) {
-            found = target==null ? data[i]==null : target.equals(data[i]);
-        }
-        return found;
+        return contains(target, 0);
     }
+
+    private boolean contains(Object target, int index){
+        boolean isFound = false;
+
+        if(index<size()){
+            if(data[index].equals(target)) {
+                isFound = true;
+            } else {
+                isFound = contains(target, index+1);
+            }
+        }
+        return isFound;
+    }
+
+
+
+
+
 
     /**
      * Returns the index of the first occurrence of the specified element
@@ -74,15 +97,31 @@ public class ArrayList<E> implements List<E>, RandomAccess {
      * @return the index of the first occurrence of the specified element in this
      *         list, or <tt>-1</tt> if this list does not contain the element
      */
-    @Override
-    public int indexOf(Object target) {
-        int index = -1;
-        for(int i=0; index==-1 && i<size(); ++i) {
-            if((target==null ? data[i]==null : target.equals(data[i]))) {
-                index = i;
+//    @Override
+//    public int indexOf(Object target) {
+//        int index = -1;
+//        for(int i=0; index==-1 && i<size(); ++i) {
+//            if((target==null ? data[i]==null : target.equals(data[i]))) {
+//                index = i;
+//            }
+//        }
+//        return index;
+//    }
+
+    public int indexOf(Object target){
+        return indexOf(target, 0);
+    }
+
+    private int indexOf(Object target, int index){
+        int targetsIndex = -1;
+        if(index < size()){
+            if(data[index].equals(target)){
+                targetsIndex = index;
+            } else {
+                targetsIndex = indexOf(target, index+1);
             }
         }
-        return index;
+        return targetsIndex;
     }
 
     @Override
