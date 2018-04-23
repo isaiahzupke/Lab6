@@ -43,35 +43,35 @@ public class Tester {
 
         // Testing only size
         String description = "ArrayList constructor collection of Strings of size: ";
-        test(description + 0, ArrayListSizeStrings(EMPTY_STRINGS));
-        test(description + 1, ArrayListSizeStrings(STRINGS1));
-        test(description + 2, ArrayListSizeStrings(STRINGS2));
-        test(description + 3, ArrayListSizeStrings(STRINGS3));
-        test(description + 4, ArrayListSizeStrings(STRINGS4));
-        test(description + 5, ArrayListSizeStrings(STRINGS5));
+        test(description + 0, arrayListSizeStrings(EMPTY_STRINGS));
+        test(description + 1, arrayListSizeStrings(STRINGS1));
+        test(description + 2, arrayListSizeStrings(STRINGS2));
+        test(description + 3, arrayListSizeStrings(STRINGS3));
+        test(description + 4, arrayListSizeStrings(STRINGS4));
+        test(description + 5, arrayListSizeStrings(STRINGS5));
 
         // Testing only size
         description = "ArrayList constructor collection of Integers of size: ";
-        test(description + 0, ArrayListSizeInts(EMPTY_INTS));
-        test(description + 1, ArrayListSizeInts(INTS1));
-        test(description + 2, ArrayListSizeInts(INTS2));
-        test(description + 3, ArrayListSizeInts(INTS3));
-        test(description + 4, ArrayListSizeInts(INTS4));
+        test(description + 0, arrayListSizeInts(EMPTY_INTS));
+        test(description + 1, arrayListSizeInts(INTS1));
+        test(description + 2, arrayListSizeInts(INTS2));
+        test(description + 3, arrayListSizeInts(INTS3));
+        test(description + 4, arrayListSizeInts(INTS4));
 
         description = "ArrayList testing indexOf: ";
-        test(description + 0, ArrayListIndexOfStrings(EMPTY_STRINGS));
-        test(description + 1, ArrayListIndexOfStrings(STRINGS1));
-        test(description + 2, ArrayListIndexOfStrings(STRINGS2));
-        test(description + 3, ArrayListIndexOfStrings(STRINGS3));
-        test(description + 4, ArrayListIndexOfStrings(STRINGS4));
-        test(description + 5, ArrayListIndexOfStrings(STRINGS5));
+        test(description + 0, arrayListIndexOfStrings(EMPTY_STRINGS));
+        test(description + 1, arrayListIndexOfStrings(STRINGS1));
+        test(description + 2, arrayListIndexOfStrings(STRINGS2));
+        test(description + 3, arrayListIndexOfStrings(STRINGS3));
+        test(description + 4, arrayListIndexOfStrings(STRINGS4));
+        test(description + 5, arrayListIndexOfStrings(STRINGS5));
 
         description = "LinkedList testing indexOf: ";
-        test(description + 0, ArrayListIndexOfStrings(EMPTY_INTS));
-        test(description + 1, ArrayListIndexOfStrings(INTS1));
-        test(description + 2, ArrayListIndexOfStrings(INTS2));
-        test(description + 3, ArrayListIndexOfStrings(INTS3));
-        test(description + 4, ArrayListIndexOfStrings(INTS4));
+        test(description + 0, arrayListIndexOfStrings(EMPTY_INTS));
+        test(description + 1, arrayListIndexOfStrings(INTS1));
+        test(description + 2, arrayListIndexOfStrings(INTS2));
+        test(description + 3, arrayListIndexOfStrings(INTS3));
+        test(description + 4, arrayListIndexOfStrings(INTS4));
     }
 
     /**
