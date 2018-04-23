@@ -33,20 +33,45 @@ public class Tester {
      * @param ignored Not used
      */
     public static void main(String[] ignored) {
-        String description = "ArrayList constructor collection of Strings of size: ";
-        test(description + 0, stringConstructor(EMPTY_STRINGS));
-        test(description + 1, stringConstructor(STRINGS1));
-        test(description + 2, stringConstructor(STRINGS2));
-        test(description + 3, stringConstructor(STRINGS3));
-        test(description + 4, stringConstructor(STRINGS4));
-        test(description + 5, stringConstructor(STRINGS5));
 
+        //NAMING CONVENTION FOR METHODS https://dzone.com/articles/7-popular-unit-test-naming
+        // ListType_MethodName_DataTypeUsed_ExpectedResult_StateUnderTest
+        // ArrayListGetStrings
+        // LinkedListSizeIntsPrintsIfReturnIsntSame
+
+
+
+        // Testing only size
+        String description = "ArrayList constructor collection of Strings of size: ";
+        test(description + 0, ArrayListSizeStrings(EMPTY_STRINGS));
+        test(description + 1, ArrayListSizeStrings(STRINGS1));
+        test(description + 2, ArrayListSizeStrings(STRINGS2));
+        test(description + 3, ArrayListSizeStrings(STRINGS3));
+        test(description + 4, ArrayListSizeStrings(STRINGS4));
+        test(description + 5, ArrayListSizeStrings(STRINGS5));
+
+        // Testing only size
         description = "ArrayList constructor collection of Integers of size: ";
-        test(description + 0, intConstructor(EMPTY_INTS));
-        test(description + 1, intConstructor(INTS1));
-        test(description + 2, intConstructor(INTS2));
-        test(description + 3, intConstructor(INTS3));
-        test(description + 4, intConstructor(INTS4));
+        test(description + 0, ArrayListSizeInts(EMPTY_INTS));
+        test(description + 1, ArrayListSizeInts(INTS1));
+        test(description + 2, ArrayListSizeInts(INTS2));
+        test(description + 3, ArrayListSizeInts(INTS3));
+        test(description + 4, ArrayListSizeInts(INTS4));
+
+        description = "ArrayList testing indexOf: ";
+        test(description + 0, ArrayListIndexOfStrings(EMPTY_STRINGS));
+        test(description + 1, ArrayListIndexOfStrings(STRINGS1));
+        test(description + 2, ArrayListIndexOfStrings(STRINGS2));
+        test(description + 3, ArrayListIndexOfStrings(STRINGS3));
+        test(description + 4, ArrayListIndexOfStrings(STRINGS4));
+        test(description + 5, ArrayListIndexOfStrings(STRINGS5));
+
+        description = "LinkedList testing indexOf: ";
+        test(description + 0, ArrayListIndexOfStrings(EMPTY_INTS));
+        test(description + 1, ArrayListIndexOfStrings(INTS1));
+        test(description + 2, ArrayListIndexOfStrings(INTS2));
+        test(description + 3, ArrayListIndexOfStrings(INTS3));
+        test(description + 4, ArrayListIndexOfStrings(INTS4));
     }
 
     /**
@@ -67,7 +92,7 @@ public class Tester {
      * @param strings An array of Strings to be added to the ArrayList
      * @return true if test passed
      */
-    private static boolean stringConstructor(String[] strings) {
+    private static boolean arrayListSizeStrings(String[] strings) {
         Collection<String> input = new java.util.ArrayList<>();
         for(String string : strings) {
             input.add(string);
@@ -83,7 +108,7 @@ public class Tester {
      * @param numbers An array of ints to be added to the ArrayList
      * @return true if test passed
      */
-    private static boolean intConstructor(int[] numbers) {
+    private static boolean arrayListSizeInts(int[] numbers) {
         Collection<Integer> input = new java.util.ArrayList<>();
         for(int number : numbers) {
             input.add(number);
@@ -91,4 +116,33 @@ public class Tester {
         List<Integer> list = new ArrayList<>(input);
         return list.size()==input.size();
     }
+
+    private static boolean arrayListIndexOfStrings(String[] strings){
+        java.util.ArrayList<String> input = new java.util.ArrayList<>();
+        boolean passed = true;
+        for(String string : strings){
+            input.add(string);
+        }
+        List<String> list = new ArrayList<>(input);
+        for(String string: strings){
+            passed = passed ? list.indexOf(strings) == input.indexOf(strings) : false;
+        }
+        return passed;
+    }
+    private static boolean arrayListIndexOfStrings(int[] numbers){
+        java.util.ArrayList<Integer> input = new java.util.ArrayList<>();
+        boolean passed = true;
+        for(int ints : numbers) {
+            input.add(ints);
+        }
+        List<Integer> list = new ArrayList<>(input);
+        for(int ints : numbers){
+            passed = passed ? list.indexOf(ints) == input.indexOf(ints) : false;
+        }
+        return passed;
+    }
+
+
+
+
 }
