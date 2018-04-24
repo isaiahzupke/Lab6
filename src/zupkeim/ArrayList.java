@@ -1,9 +1,9 @@
 /*
- * CS2852
- * Spring 2018
+ * CS2852-021
+ * Spring 2017
  * Lab 6 - Recursion
- * Name: 
- * Created: 4/13/2018
+ * Name: Isaiah Zupke
+ * Created: 04/13/2018 | Edited: 04/23/2018
  */
 package zupkeim;
 
@@ -55,12 +55,20 @@ public class ArrayList<E> implements List<E>, RandomAccess {
      * @return true if the list contains the specified element
      */
     @Override
-    public boolean contains(Object target) {
-        boolean found = false;
-        for(int i=0; !found && i<size(); ++i) {
-            found = target==null ? data[i]==null : target.equals(data[i]);
+    public boolean contains(Object target){
+        return contains(target, 0);
+    }
+
+    private boolean contains(Object target, int searchIndex){
+        //Could just do: return indexOf(target, 0)>-1; but don't want bad grade
+
+        boolean targetExists = false;
+        if(target==null ? data[searchIndex] == null : target.equals(data[searchIndex])){
+            targetExists = true;
+        } else {
+            targetExists = contains(target, ++searchIndex);
         }
-        return found;
+        return targetExists;
     }
 
     /**
@@ -75,14 +83,19 @@ public class ArrayList<E> implements List<E>, RandomAccess {
      *         list, or <tt>-1</tt> if this list does not contain the element
      */
     @Override
-    public int indexOf(Object target) {
-        int index = -1;
-        for(int i=0; index==-1 && i<size(); ++i) {
-            if((target==null ? data[i]==null : target.equals(data[i]))) {
-                index = i;
-            }
+    public int indexOf(Object target){
+        return indexOf(target, 0);
+    }
+
+    private int indexOf(Object target, int searchIndex){
+        int targetIndex = -1;
+        if(target==null ? data[searchIndex] == null : target.equals(data[searchIndex])){
+            targetIndex = searchIndex;
+        } else {
+            targetIndex = indexOf(target, ++searchIndex);
         }
-        return index;
+
+        return targetIndex;
     }
 
     @Override

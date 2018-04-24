@@ -1,9 +1,9 @@
 /*
- * CS2852
- * Spring 2018
+ * CS2852-021
+ * Spring 2017
  * Lab 6 - Recursion
- * Name: 
- * Created: 4/13/2018
+ * Name: Isaiah Zupke
+ * Created: 04/13/2018 | Edited: 04/23/2018
  */
 package zupkeim;
 
@@ -74,12 +74,14 @@ public class LinkedList<E> implements List<E> {
      * @return the number of elements in this list
      */
     @Override
-    public int size() {
+    public int size(){
+        return size(head);
+    }
+
+    private int size(Node<E> position){
         int size = 0;
-        Node<E> walker = head;
-        while(walker!=null) {
-            ++size;
-            walker = walker.next;
+        if(position != null){
+            size = size(position.next) + 1;
         }
         return size;
     }
@@ -92,13 +94,17 @@ public class LinkedList<E> implements List<E> {
      * @param target element whose presence in this list is to be tested
      * @return true if this list contains the specified element
      */
-    @Override
-    public boolean contains(Object target) {
-        Node<E> walker = head;
+    public boolean contains(Object target){
+        return contains(target, head);
+    }
+
+    private boolean contains(Object target, Node<E> position){
         boolean found = false;
-        while(walker!=null && !found) {
-            found = target==null ? walker.value==null : target.equals(walker.value);
-            walker = walker.next;
+        if(position != null){
+            found = position.value==null ? (target==null) : (position.value.equals(target));
+            if(!found){
+                found = contains(target, position.next);
+            }
         }
         return found;
     }
@@ -116,18 +122,23 @@ public class LinkedList<E> implements List<E> {
      */
     @Override
     public int indexOf(Object target) {
-        Node<E> walker = head;
-        int index = -1;
-        int counter = 0;
-        while(walker!=null && index==-1) {
-            if(target==null ? walker.value==null : target.equals(walker.value)) {
-                index = counter;
-            }
-            ++counter;
-            walker = walker.next;
-        }
-        return index;
+        return indexOf(target, head);
     }
+
+    private int indexOf(Object target, Node<E> position){
+        int targetIndex = -1;
+        if(position != null){ //if the element is not found, then it will keep going forever.
+            //if target is null do that. If position.value == null
+            if(target == null || position.value == null ? target == position.value : position.value.equals(target)){
+                ++targetIndex;
+            } else {
+
+                targetIndex = indexOf(target, position.next) + 1;
+            }
+        }
+        return targetIndex;
+    }
+
 
     /**
      * Returns the element at the specified position in this list.
@@ -137,19 +148,21 @@ public class LinkedList<E> implements List<E> {
      *                                   (index<0 || index>=size())
      */
     @Override
-    public E get(int index) {
-        if(index<0) {
+    public E get(int index){
+        if(index < 0 || index >= size()){
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
         }
-        try {
-            Node<E> walker = head;
-            for(int i=0; i<index; ++i) {
-                walker = walker.next;
-            }
-            return walker.value;
-        } catch(NullPointerException e) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size());
+        return get(index, head);
+    }
+
+    private E get(int index, Node<E> position){
+        E returnValue = null;
+        if(index != 0){ //this might not work because it might be getting null point exceptions. Method might need some reworking.
+            returnValue = get(--index, position.next);
+        } else {
+            returnValue = position.value;
         }
+        return returnValue;
     }
 
     @Override
